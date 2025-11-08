@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도시 공간 감성 재활용 아티스트 | 세종의 유휴 공간을 문화적 활력으로</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Gungsuh', 'Gungseo', 'Batang', 'Nanum Myeongjo', serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 2;
+            overflow-x: hidden;
+            letter-spacing: 0.05em;
+        }
+
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #DAA520;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+            letter-spacing: 0.1em;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+        }
+
+        /* 훈민정음 장식 */
+        .hangeul-decoration {
+            font-size: 4rem;
+            color: #DAA520;
+            opacity: 0.2;
+            margin-bottom: 1rem;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        .hero h1 span {
+            color: #FFD700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        .visual-card {
+            height: 250px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .visual-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .visual-card::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(218, 165, 32, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .visual-card-content {
+            color: #DAA520;
+            text-align: center;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .visual-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 섹션 공통 스타일 */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+            letter-spacing: 0.05em;
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: #FFD700;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+            letter-spacing: 0.03em;
+        }
+
+        .section-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 문제 정의 섹션 */
+        .problem {
+            background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(218, 165, 32, 0.05);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #DAA520);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h4 {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        .stat-card p {
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+
+        /* 이미지 섹션 */
+        .image-showcase {
+            margin: 4rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .showcase-image {
+            height: 300px;
+            background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-image:hover {
+            border-color: #FFD700;
+        }
+
+        .image-text {
+            color: #DAA520;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        /* 솔루션 섹션 */
+        .solution {
+            background: #0a0a0a;
+        }
+
+        .value-props {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.08) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '✓';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: #FFD700;
+            opacity: 0.2;
+        }
+
+        .value-card h4 {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        /* 프로세스 이미지 */
+        .process-flow {
+            margin: 4rem 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .process-step {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            border-radius: 50%;
+            border: 3px solid #DAA520;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -3rem;
+            font-size: 2rem;
+            color: #DAA520;
+        }
+
+        .process-step:last-child::after {
+            content: '';
+        }
+
+        .process-number {
+            font-size: 2rem;
+            color: #FFD700;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-text {
+            color: #e0e0e0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* 혜택 테이블 */
+        .benefits {
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
+
+        .benefits-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 3rem;
+            background: rgba(218, 165, 32, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(218, 165, 32, 0.3);
+        }
+
+        .benefits-table th {
+            background: rgba(218, 165, 32, 0.15);
+            color: #FFD700;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        .benefits-table td {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(218, 165, 32, 0.2);
+        }
+
+        .benefits-table tr:hover {
+            background: rgba(218, 165, 32, 0.08);
+        }
+
+        /* 신뢰 섹션 */
+        .trust {
+            background: #0a0a0a;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .trust-card {
+            background: rgba(218, 165, 32, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .trust-card h4 {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        .trust-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .trust-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #b0b0b0;
+        }
+
+        .trust-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #DAA520;
+        }
+
+        /* MVP 박스 */
+        .mvp-box {
+            background: rgba(218, 165, 32, 0.08);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .mvp-box h4 {
+            color: #FFD700;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        /* 가격 섹션 */
+        .pricing {
+            background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
+        }
+
+        .pricing-table {
+            width: 100%;
+            margin-top: 3rem;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(218, 165, 32, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+        }
+
+        .pricing-table th {
+            background: rgba(218, 165, 32, 0.2);
+            color: #FFD700;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        .pricing-table td {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(218, 165, 32, 0.2);
+        }
+
+        .pricing-table tr:last-child td {
+            background: rgba(218, 165, 32, 0.1);
+            font-weight: 600;
+        }
+
+        .highlight {
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        /* CTA 섹션 */
+        .cta {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .cta h2 {
+            margin-bottom: 2rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #DAA520 100%);
+            color: #0a0a0a;
+            padding: 1.5rem 4rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
+            border: none;
+            cursor: pointer;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+            letter-spacing: 0.1em;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* 푸터 */
+        footer {
+            background: #0a0a0a;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(218, 165, 32, 0.3);
+        }
+
+        footer nav {
+            position: relative;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            font-size: 0.9rem;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .visual-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-card {
+                height: 200px;
+            }
+
+            .image-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .process-flow {
+                flex-direction: column;
+            }
+
+            .process-step::after {
+                content: '↓';
+                right: auto;
+                bottom: -3rem;
+                top: auto;
+            }
+
+            .pricing-table, .benefits-table {
+                font-size: 0.9rem;
+            }
+
+            .pricing-table th, .pricing-table td,
+            .benefits-table th, .benefits-table td {
+                padding: 1rem;
+            }
+        }
+
+        /* 스크롤 애니메이션 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <ul>
+            <li><a href="#problem">문제</a></li>
+            <li><a href="#solution">솔루션</a></li>
+            <li><a href="#benefits">혜택</a></li>
+            <li><a href="#trust">신뢰</a></li>
+            <li><a href="#pricing">가격</a></li>
+            <li><a href="#cta">신청</a></li>
+        </ul>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hangeul-decoration">ㅎㅁㅈㅇ</div>
+            <h1>퇴근 후 삭막한 도시의 벽면,<br>당신의 <span>十五分 감성 충전소</span>가 되다</h1>
+            <p class="subtitle">도시 공간 감성 재활용 프로젝트: 세종의 유휴 공간을 문화적 활력으로 채웁니다</p>
+            
+            <div class="visual-grid">
+                <div class="visual-card">
+                    <div class="visual-card-content">
+                        <div class="visual-icon">🏛️</div>
+                        <strong>삭막한 콘크리트 벽면</strong><br>
+                        <small>변화 이전의 유휴 공간</small>
+                    </div>
+                </div>
+                <div class="visual-card">
+                    <div class="visual-card-content">
+                        <div class="visual-icon">✨</div>
+                        <strong>디지털 미디어 아트</strong><br>
+                        <small>감성을 담은 빛의 설치</small>
+                    </div>
+                </div>
+                <div class="visual-card">
+                    <div class="visual-card-content">
+                        <div class="visual-icon">💫</div>
+                        <strong>생명을 얻은 공간</strong><br>
+                        <small>문화적 활력이 깃든 도시</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 문제 정의 -->
+    <section id="problem" class="problem fade-in">
+        <h2>공무원 도시 세종,<br>당신의 워라밸은 안녕하신가요?</h2>
+        <p class="section-intro">
+            세종시 직장인 및 공무원들의 삶의 질은 주거 환경만으로 측정되지 않습니다.
+        </p>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-icon">🏢</div>
+                <h4>도시의 삭막함</h4>
+                <p>계획도시 구조와 공무원 중심의 주거 시설로 인해 도시 전반에 <strong>문화적 활력과 '놀거리'가 부족</strong>하여 삭막함을 느낍니다.</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">😔</div>
+                <h4>워라밸과 스트레스</h4>
+                <p>높은 업무 강도에도 불구하고 도시 내에서 <strong>짧은 시간 내에 감성적 위안을 얻을 수 있는 공간</strong>이 절대적으로 부족합니다.</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🚧</div>
+                <h4>유휴 공간의 방치</h4>
+                <p>도심 곳곳의 비어있는 공공 시설 벽면, 상가 통로, 건축물 유휴 공간은 도시의 이미지를 저해하는 <strong>'방치된 캔버스'</strong>가 되고 있습니다.</p>
+            </div>
+        </div>
+
+        <div class="image-showcase">
+            <div class="showcase-image">
+                <div class="image-text">
+                    📷<br>삭막한 도시 풍경<br>
+                    <small>감성이 메마른 유휴 공간들</small>
+                </div>
+            </div>
+            <div class="showcase-image">
+                <div class="image-text">
+                    📷<br>퇴근 후 지친 시민들<br>
+                    <small>위안이 필요한 일상</small>
+                </div>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem; font-size: 1.3rem; color: #FFD700; font-weight: 600;">
+            도시의 삭막함이 시민들의 활력을 앗아가고 있습니다.<br>
+            세종시가 더 이상 '노잼 도시'여서는 안 됩니다.
+        </p>
+    </section>
+
+    <!-- 솔루션 -->
+    <section id="solution" class="solution fade-in">
+        <h2>Urban Space Emotional Recycler</h2>
+        <h3>도시 공간 감성 재활용 아티스트</h3>
+        <p class="section-intro">
+            우리는 세종의 <strong>비어있는 공간</strong>을 <strong>'움직이는 디지털 아트(미디어 파사드, 인터랙티브 아트)'</strong>로 변화시키는 전문가 그룹입니다. 도시의 하드웨어(건축물)에 감성적인 소프트웨어(아트 콘텐츠)를 입혀, 공간의 본질적인 가치를 재활용합니다.
+        </p>
+
+        <div class="process-flow">
+            <div class="process-step">
+                <div class="process-number">一</div>
+                <div class="process-text">유휴 공간<br>발굴</div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">二</div>
+                <div class="process-text">미디어 아트<br>디자인</div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">三</div>
+                <div class="process-text">설치 및<br>운영</div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">四</div>
+                <div class="process-text">감성 충전소<br>완성</div>
+            </div>
+        </div>
+
+        <div class="value-props">
+            <div class="value-card">
+                <h4>삭막함 해소</h4>
+                <p>무채색의 도시 벽면을 다채로운 감성을 담은 <strong>문화적 랜드마크</strong>로 재탄생시킵니다.</p>
+            </div>
+
+            <div class="value-card">
+                <h4>즉각적인 위안</h4>
+                <p>퇴근길, 점심시간 등 짧은 시간 내에 긍정적인 감성을 전달하는 <strong>'15분 감성 충전소'</strong>를 구축합니다.</p>
+            </div>
+
+            <div class="value-card">
+                <h4>공간 효율 극대화</h4>
+                <p>유휴 공간을 활용하여 최소 비용으로 최대의 문화적, 심리적 만족도를 창출합니다.</p>
+            </div>
+        </div>
+
+        <div class="image-showcase" style="margin-top: 4rem;">
+            <div class="showcase-image">
+                <div class="image-text">
+                    🎨<br>미디어 파사드 예시<br>
+                    <small>움직이는 디지털 아트</small>
+                </div>
+            </div>
+            <div class="showcase-image">
+                <div class="image-text">
+                    🌃<br>인터랙티브 설치<br>
+                    <small>시민 참여형 감성 공간</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 혜택 -->
+    <section id="benefits" class="benefits fade-in">
+        <h2>단순한 설치를 넘어선</h2>
+        <h3>三가지 도시
