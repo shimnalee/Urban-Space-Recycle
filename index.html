@@ -664,9 +664,286 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* 히어로 섹션과 visual-card는 항상 보이기 */
+        .hero, .hero * {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .visual-card {
+            cursor: pointer;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            margin: 5% auto;
+            padding: 3rem;
+            border: 2px solid #FFD700;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { 
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            color: #FFD700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #FFA500;
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+            font-family: 'Gungsuh', 'Gungseo', serif;
+        }
+
+        .modal h3 {
+            color: #FFD700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal p {
+            color: #e0e0e0;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .modal ul {
+            color: #b0b0b0;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
+    <!-- 모달 창들 -->
+    <div id="problemModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('problemModal')">&times;</span>
+            <div class="modal-icon">🏢</div>
+            <h2>도시의 문제: 삭막함과 유휴 공간</h2>
+            
+            <h3>세종시가 직면한 현실</h3>
+            <p>계획도시로 탄생한 세종시는 체계적인 인프라를 갖췄지만, 그 이면에는 심각한 문화적 공백이 존재합니다.</p>
+            
+            <h3>구체적인 문제점</h3>
+            <ul>
+                <li><strong>문화적 활력 부족:</strong> 공무원 중심의 업무 도시로 설계되어 퇴근 후 즐길 수 있는 문화 콘텐츠가 절대적으로 부족합니다.</li>
+                <li><strong>감성적 위안 공간 부재:</strong> 높은 업무 강도로 지친 직장인들이 짧은 시간 내에 심리적 안정을 취할 수 있는 공간이 없습니다.</li>
+                <li><strong>유휴 공간의 방치:</strong> 도심 곳곳의 비어있는 벽면, 상가 통로, 지하 공간 등이 활용되지 못한 채 도시 이미지를 저해하고 있습니다.</li>
+                <li><strong>'노잼 도시' 이미지:</strong> 삶의 질보다는 업무 효율성에 초점이 맞춰진 도시 구조로 인해 시민들의 만족도가 낮습니다.</li>
+            </ul>
+            
+            <h3>통계로 보는 현실</h3>
+            <p>세종시민의 <strong>67%</strong>가 도시 내 문화 여가 시설 부족을 느끼고 있으며, 직장인 <strong>73%</strong>가 퇴근 후 갈 곳이 없어 바로 귀가한다고 응답했습니다. (가상 통계)</p>
+        </div>
+    </div>
+
+    <div id="solutionModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('solutionModal')">&times;</span>
+            <div class="modal-icon">✨</div>
+            <h2>우리의 솔루션: 감성 재활용</h2>
+            
+            <h3>도시 공간 감성 재활용이란?</h3>
+            <p>버려진 도시 공간에 디지털 미디어 아트를 설치하여, 물리적 공간을 문화적 가치로 전환하는 혁신적 접근입니다.</p>
+            
+            <h3>핵심 기술 및 방법론</h3>
+            <ul>
+                <li><strong>미디어 파사드:</strong> 건물 외벽에 프로젝션 맵핑 기술로 움직이는 디지털 아트를 투사합니다.</li>
+                <li><strong>인터랙티브 설치:</strong> 시민들의 움직임이나 소리에 반응하는 감응형 미디어 아트로 참여를 유도합니다.</li>
+                <li><strong>감성 콘텐츠 큐레이션:</strong> 계절, 시간대, 시민 피드백에 따라 최적화된 아트 콘텐츠를 제공합니다.</li>
+                <li><strong>저전력 LED 기술:</strong> 환경 친화적이면서도 강렬한 시각적 효과를 구현합니다.</li>
+            </ul>
+            
+            <h3>15분 감성 충전소 컨셉</h3>
+            <p>퇴근길 또는 점심시간 단 15분 동안 머물며 심리적 위안을 얻을 수 있는 도시 내 오아시스를 조성합니다. 빠른 템포의 현대 생활에 맞춘 즉각적 힐링 공간입니다.</p>
+        </div>
+    </div>
+
+    <div id="benefitsModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('benefitsModal')">&times;</span>
+            <div class="modal-icon">💫</div>
+            <h2>프로젝트의 핵심 혜택</h2>
+            
+            <h3>1. 도시 이미지 혁신</h3>
+            <p>세종시를 <strong>'감성이 살아있는 미래 도시'</strong>로 리브랜딩할 수 있습니다. 단순한 행정 수도가 아닌, 문화와 기술이 융합된 혁신 도시로의 이미지 전환이 가능합니다.</p>
+            
+            <h3>2. 시민 삶의 질 향상</h3>
+            <ul>
+                <li><strong>심리적 워라밸:</strong> 업무 스트레스를 해소할 수 있는 감성 공간 제공</li>
+                <li><strong>커뮤니티 형성:</strong> 미디어 아트 주변으로 자연스러운 시민 교류 활성화</li>
+                <li><strong>도시 자긍심:</strong> 독특한 문화 콘텐츠로 세종시민으로서의 정체성 강화</li>
+            </ul>
+            
+            <h3>3. 경제적 시너지</h3>
+            <ul>
+                <li><strong>상권 활성화:</strong> 미디어 아트 설치 지역 주변 유동인구 증가로 상가 매출 증대</li>
+                <li><strong>관광 콘텐츠:</strong> SNS 확산을 통한 세종시 방문 유도</li>
+                <li><strong>저비용 고효율:</strong> 대규모 건축 없이도 즉각적인 도시 변화 가능</li>
+            </ul>
+            
+            <h3>4. 지속 가능한 도시 모델</h3>
+            <p>유휴 공간 재활용은 <strong>환경 친화적</strong>이며, 콘텐츠 교체만으로 지속적인 신선함을 유지할 수 있어 <strong>장기적 도시 자산</strong>이 됩니다.</p>
+        </div>
+    </div>
+
+    <div id="trustModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('trustModal')">&times;</span>
+            <div class="modal-icon">🤝</div>
+            <h2>신뢰 구축: 검증된 협력 체계</h2>
+            
+            <h3>MVP 시범 운영 계획</h3>
+            <p><strong>위치:</strong> 세종시청 인근 또는 정부청사 주변 접근성 높은 벽면</p>
+            <p><strong>기간:</strong> 3개월 시범 운영</p>
+            <p><strong>목표:</strong> 시민 만족도 80% 이상, 평균 체류시간 5분 이상 달성</p>
+            
+            <h3>협력 기관 네트워크</h3>
+            <ul>
+                <li><strong>세종시청:</strong> 도시재생과, 문화예술과와 긴밀한 협력으로 공공 공간 발굴 및 예산 확보</li>
+                <li><strong>세종 예술의 전당:</strong> 전문 미디어 아티스트 풀 활용 및 기술 자문</li>
+                <li><strong>지역 상인회:</strong> 상가 유휴 공간 제공 및 지역 커뮤니티 활성화 연계</li>
+                <li><strong>충남대학교/고려대 세종캠퍼스:</strong> 산학 협력으로 기술 연구 및 학생 참여 프로그램 운영</li>
+            </ul>
+            
+            <h3>리스크 관리</h3>
+            <p>시범 운영을 통한 단계적 확장 전략으로 초기 투자 리스크를 최소화하며, 정량적 데이터 기반의 의사결정을 보장합니다.</p>
+        </div>
+    </div>
+
+    <div id="pricingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('pricingModal')">&times;</span>
+            <div class="modal-icon">💰</div>
+            <h2>BETA 1기 파트너 특별 제안</h2>
+            
+            <h3>일반 프로젝트 진행 시</h3>
+            <ul>
+                <li>컨설팅 및 공간 분석: 500만원~</li>
+                <li>콘텐츠 디자인 및 제작: 1,000만원~</li>
+                <li>설치 및 시운전: 800만원~</li>
+                <li>월간 유지보수: 100만원~</li>
+            </ul>
+            
+            <h3>BETA 1기 파트너 혜택</h3>
+            <ul>
+                <li><strong>✓ 컨설팅 무료:</strong> 공간 분석 및 최적 설치 위치 제안 무상 제공</li>
+                <li><strong>✓ 디자인 50% 할인:</strong> 맞춤형 콘텐츠 디자인 초안 특별 가격</li>
+                <li><strong>✓ 3개월 무상 지원:</strong> 유지보수 및 콘텐츠 업데이트 무료</li>
+                <li><strong>✓ 우선 협력권:</strong> 향후 확장 프로젝트 우선 참여 기회</li>
+            </ul>
+            
+            <h3>투자 대비 효과</h3>
+            <p>최소 투자로 <strong>도시 이미지 개선, 시민 만족도 향상, 미디어 홍보 효과</strong>를 동시에 얻을 수 있는 고효율 프로젝트입니다.</p>
+            
+            <p style="text-align: center; margin-top: 2rem; color: #FFD700; font-size: 1.2rem;">
+                <strong>지금 신청하면 세종시 최초 감성 재활용 프로젝트의 주인공이 됩니다!</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // 페이지 로드 시 모든 fade-in 요소 관찰
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // 페이지 최상단으로 스크롤
+            window.scrollTo(0, 0);
+        });
+    </script>
     <!-- 네비게이션 -->
     <nav>
         <ul>
