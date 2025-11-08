@@ -1,605 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>도시 공간 감성 재활용 아티스트 | 세종의 유휴 공간을 문화적 활력으로</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Urban Soul Plug-in — 도시 공간 감성 재활용 아티스트</title>
+<meta name="description" content="세종의 유휴 공간에 골드빛 미디어 아트를 투사해 일상에 감성을 더하는 'Urban Soul Plug-in' 프로젝트 랜딩페이지" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+/* Color system */
+:root{
+--gold: #FFB300; /* 주요 강조색 */
+--navy: #004D40; /* 보조색 */
+--bg: #06070a; /* 전체 배경(dark) */
+--muted: #9aa7a1;
+--glass: rgba(255,255,255,0.04);
+--card: rgba(255,255,255,0.03);
+font-family: 'Noto Sans KR', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+}
 
-        body {
-            font-family: 'Gungsuh', 'Gungseo', 'Batang', 'Nanum Myeongjo', serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 2;
-            overflow-x: hidden;
-            letter-spacing: 0.05em;
-        }
 
-        /* 네비게이션 */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 2rem;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
-        }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+margin:0;
+background: linear-gradient(180deg,#040507 0%, #07111a 60%);
+color:#e6efe9;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+line-height:1.6;
+}
 
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            list-style: none;
-            flex-wrap: wrap;
-        }
 
-        nav a {
-            color: #DAA520;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            font-family: 'Gungsuh', 'Gungseo', serif;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-        }
+a{color:var(--gold);text-decoration:none}
 
-        nav a:hover {
-            color: #FFD700;
-        }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            transition: width 0.3s ease;
-        }
+/* Navigation */
+.nav{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(6,7,10,0.9), rgba(6,7,10,0.7));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,179,0,0.05)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:8px;display:inline-grid;place-items:center;background:linear-gradient(135deg, rgba(255,179,0,0.18), rgba(0,77,64,0.08));border:1px solid rgba(255,179,0,0.12);font-weight:900;color:var(--gold)}
+.nav-links{display:flex;gap:14px;align-items:center}
+.nav-links a{padding:8px 10px;border-radius:8px;font-weight:600;color:var(--muted)}
+.nav-links a:hover{color:var(--gold);background:rgba(255,179,0,0.04)}
 
-        nav a:hover::after {
-            width: 100%;
-        }
 
-        /* 모달 스타일 */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease;
-        }
+/* Hero */
+.hero{min-height:68vh;display:grid;align-items:center;place-items:center;padding:48px 20px}
+.hero-inner{max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+.hero h1{font-size:clamp(28px,4.2vw,44px);margin:0 0 12px;color:#fff}
+.hero p.lead{color:var(--muted);margin:0 0 18px;font-size:1.05rem}
+.cta-row{display:flex;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(90deg,var(--gold), #ff9c00);color:#061012;box-shadow:0 8px 30px rgba(255,179,0,0.12)}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
 
-        .modal-content {
-            position: relative;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-            margin: 3% auto;
-            padding: 3rem;
-            border: 3px solid #FFD700;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.5);
-            animation: slideIn 0.4s ease;
-        }
+/* Visual card */
+.visual{height:340px;border-radius:14px;overflow:hidden;position:relative;background:#000;box-shadow:0 20px 40px rgba(2,8,10,0.6)}
+.visual::before{content:'';position:absolute;inset:0;background-image:
+radial-gradient(400px 200px at 20% 30%, rgba(255,179,0,0.12), transparent 8%),
+radial-gradient(300px 120px at 75% 40%, rgba(0,77,64,0.06), transparent 12%),
+linear-gradient(180deg, rgba(4,6,10,0.2), rgba(2,4,8,0.6));mix-blend-mode:screen}
+.visual .mock{position:absolute;inset:0;background-size:cover;background-position:center;filter:contrast(110%) saturate(105%);}
+.visual .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,6,10,0.35), rgba(4,6,10,0.6))}
+.visual .badge{position:absolute;left:18px;bottom:18px;background:linear-gradient(90deg,var(--gold), #ff9c00);color:#061012;padding:8px 12px;border-radius:999px;font-weight:800}
 
-        @keyframes slideIn {
-            from { 
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
 
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 2rem;
-            font-size: 3rem;
-            color: #FFD700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 300;
-            line-height: 1;
-            z-index: 10;
-        }
+/* Section styles */
+.container{max-width:1100px;margin:0 auto;padding:48px 20px}
+section{padding:32px 0}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.card h4{margin:0 0 8px}
+.muted{color:var(--muted)}
 
-        .modal-close:hover {
-            color: #FFA500;
-            transform: rotate(90deg);
-        }
 
-        .modal h2 {
-            color: #FFD700;
-            margin-bottom: 1.5rem;
-            font-size: 2.2rem;
-            text-align: center;
-            font-family: 'Gungsuh', 'Gungseo', serif;
-        }
-
-        .modal h3 {
-            color: #FFD700;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            font-family: 'Gungsuh', 'Gungseo', serif;
-        }
-
-        .modal p {
-            color: #e0e0e0;
-            line-height: 2;
-            margin-bottom: 1rem;
-        }
-
-        .modal ul {
-            color: #b0b0b0;
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal li {
-            margin-bottom: 0.8rem;
-            line-height: 1.8;
-        }
-
-        .modal-icon {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        /* 히어로 섹션 */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-        }
-
-        .hangeul-decoration {
-            font-size: 4rem;
-            color: #DAA520;
-            opacity: 0.3;
-            margin-bottom: 1rem;
-            font-family: 'Gungsuh', 'Gungseo', serif;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            letter-spacing: 0.02em;
-            font-family: 'Gungsuh', 'Gungseo', serif;
-        }
-
-        .hero h1 span {
-            color: #FFD700;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-        }
-
-        .subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: #b0b0b0;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
-        .visual-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1000px;
-            margin: 3rem auto;
-        }
-
-        .visual-card {
-            height: 250px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-            border-radius: 15px;
-            border: 2px solid rgba(218, 165, 32, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .visual-card:hover {
-            transform: translateY(-10px);
-            border-color: #FFD700;
-            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
-        }
-
-        .visual-card::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(218, 165, 32, 0.1) 50%, transparent 70%);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .visual-card-content {
-            color: #DAA520;
-            text-align: center;
-            padding: 2rem;
-            z-index: 1;
-        }
-
-        .visual-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* CTA 섹션 */
-        .cta {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
-            text-align: center;
-            padding: 6rem 2rem;
-        }
-
-        .cta h2 {
-            color: #FFD700;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-family: 'Gungsuh', 'Gungseo', serif;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #FFD700 0%, #DAA520 100%);
-            color: #0a0a0a;
-            padding: 1.5rem 4rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
-            border: none;
-            cursor: pointer;
-            font-family: 'Gungsuh', 'Gungseo', serif;
-            letter-spacing: 0.1em;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
-        }
-
-        /* 반응형 */
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                padding: 0 1rem;
-            }
-
-            nav a {
-                font-size: 0.9rem;
-            }
-
-            .modal-content {
-                padding: 2rem;
-                margin: 10% auto;
-            }
-
-            .modal h2 {
-                font-size: 1.8rem;
-            }
-
-            .visual-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .visual-card {
-                height: 200px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- 모달 창들 -->
-    <div id="problemModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('problemModal')">&times;</span>
-            <div class="modal-icon">🏢</div>
-            <h2>도시의 문제: 삭막함과 유휴 공간</h2>
-            
-            <h3>세종시가 직면한 현실</h3>
-            <p>계획도시로 탄생한 세종시는 체계적인 인프라를 갖췄지만, 그 이면에는 심각한 문화적 공백이 존재합니다.</p>
-            
-            <h3>구체적인 문제점</h3>
-            <ul>
-                <li><strong>문화적 활력 부족:</strong> 공무원 중심의 업무 도시로 설계되어 퇴근 후 즐길 수 있는 문화 콘텐츠가 절대적으로 부족합니다.</li>
-                <li><strong>감성적 위안 공간 부재:</strong> 높은 업무 강도로 지친 직장인들이 짧은 시간 내에 심리적 안정을 취할 수 있는 공간이 없습니다.</li>
-                <li><strong>유휴 공간의 방치:</strong> 도심 곳곳의 비어있는 벽면, 상가 통로, 지하 공간 등이 활용되지 못한 채 도시 이미지를 저해하고 있습니다.</li>
-                <li><strong>'노잼 도시' 이미지:</strong> 삶의 질보다는 업무 효율성에 초점이 맞춰진 도시 구조로 인해 시민들의 만족도가 낮습니다.</li>
-            </ul>
-            
-            <h3>통계로 보는 현실</h3>
-            <p>세종시민의 <strong>67%</strong>가 도시 내 문화 여가 시설 부족을 느끼고 있으며, 직장인 <strong>73%</strong>가 퇴근 후 갈 곳이 없어 바로 귀가한다고 응답했습니다.</p>
-        </div>
-    </div>
-
-    <div id="solutionModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('solutionModal')">&times;</span>
-            <div class="modal-icon">✨</div>
-            <h2>우리의 솔루션: 감성 재활용</h2>
-            
-            <h3>도시 공간 감성 재활용이란?</h3>
-            <p>버려진 도시 공간에 디지털 미디어 아트를 설치하여, 물리적 공간을 문화적 가치로 전환하는 혁신적 접근입니다.</p>
-            
-            <h3>핵심 기술 및 방법론</h3>
-            <ul>
-                <li><strong>미디어 파사드:</strong> 건물 외벽에 프로젝션 맵핑 기술로 움직이는 디지털 아트를 투사합니다.</li>
-                <li><strong>인터랙티브 설치:</strong> 시민들의 움직임이나 소리에 반응하는 감응형 미디어 아트로 참여를 유도합니다.</li>
-                <li><strong>감성 콘텐츠 큐레이션:</strong> 계절, 시간대, 시민 피드백에 따라 최적화된 아트 콘텐츠를 제공합니다.</li>
-                <li><strong>저전력 LED 기술:</strong> 환경 친화적이면서도 강렬한 시각적 효과를 구현합니다.</li>
-            </ul>
-            
-            <h3>15분 감성 충전소 컨셉</h3>
-            <p>퇴근길 또는 점심시간 단 15분 동안 머물며 심리적 위안을 얻을 수 있는 도시 내 오아시스를 조성합니다. 빠른 템포의 현대 생활에 맞춘 즉각적 힐링 공간입니다.</p>
-        </div>
-    </div>
-
-    <div id="benefitsModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('benefitsModal')">&times;</span>
-            <div class="modal-icon">💫</div>
-            <h2>프로젝트의 핵심 혜택</h2>
-            
-            <h3>1. 도시 이미지 혁신</h3>
-            <p>세종시를 <strong>'감성이 살아있는 미래 도시'</strong>로 리브랜딩할 수 있습니다. 단순한 행정 수도가 아닌, 문화와 기술이 융합된 혁신 도시로의 이미지 전환이 가능합니다.</p>
-            
-            <h3>2. 시민 삶의 질 향상</h3>
-            <ul>
-                <li><strong>심리적 워라밸:</strong> 업무 스트레스를 해소할 수 있는 감성 공간 제공</li>
-                <li><strong>커뮤니티 형성:</strong> 미디어 아트 주변으로 자연스러운 시민 교류 활성화</li>
-                <li><strong>도시 자긍심:</strong> 독특한 문화 콘텐츠로 세종시민으로서의 정체성 강화</li>
-            </ul>
-            
-            <h3>3. 경제적 시너지</h3>
-            <ul>
-                <li><strong>상권 활성화:</strong> 미디어 아트 설치 지역 주변 유동인구 증가로 상가 매출 증대</li>
-                <li><strong>관광 콘텐츠:</strong> SNS 확산을 통한 세종시 방문 유도</li>
-                <li><strong>저비용 고효율:</strong> 대규모 건축 없이도 즉각적인 도시 변화 가능</li>
-            </ul>
-            
-            <h3>4. 지속 가능한 도시 모델</h3>
-            <p>유휴 공간 재활용은 <strong>환경 친화적</strong>이며, 콘텐츠 교체만으로 지속적인 신선함을 유지할 수 있어 <strong>장기적 도시 자산</strong>이 됩니다.</p>
-        </div>
-    </div>
-
-    <div id="trustModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('trustModal')">&times;</span>
-            <div class="modal-icon">🤝</div>
-            <h2>신뢰 구축: 검증된 협력 체계</h2>
-            
-            <h3>MVP 시범 운영 계획</h3>
-            <p><strong>위치:</strong> 세종시청 인근 또는 정부청사 주변 접근성 높은 벽면</p>
-            <p><strong>기간:</strong> 3개월 시범 운영</p>
-            <p><strong>목표:</strong> 시민 만족도 80% 이상, 평균 체류시간 5분 이상 달성</p>
-            
-            <h3>협력 기관 네트워크</h3>
-            <ul>
-                <li><strong>세종시청:</strong> 도시재생과, 문화예술과와 긴밀한 협력으로 공공 공간 발굴 및 예산 확보</li>
-                <li><strong>세종 예술의 전당:</strong> 전문 미디어 아티스트 풀 활용 및 기술 자문</li>
-                <li><strong>지역 상인회:</strong> 상가 유휴 공간 제공 및 지역 커뮤니티 활성화 연계</li>
-                <li><strong>충남대학교/고려대 세종캠퍼스:</strong> 산학 협력으로 기술 연구 및 학생 참여 프로그램 운영</li>
-            </ul>
-            
-            <h3>리스크 관리</h3>
-            <p>시범 운영을 통한 단계적 확장 전략으로 초기 투자 리스크를 최소화하며, 정량적 데이터 기반의 의사결정을 보장합니다.</p>
-        </div>
-    </div>
-
-    <div id="pricingModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('pricingModal')">&times;</span>
-            <div class="modal-icon">💰</div>
-            <h2>BETA 1기 파트너 특별 제안</h2>
-            
-            <h3>일반 프로젝트 진행 시</h3>
-            <ul>
-                <li>컨설팅 및 공간 분석: 500만원~</li>
-                <li>콘텐츠 디자인 및 제작: 1,000만원~</li>
-                <li>설치 및 시운전: 800만원~</li>
-                <li>월간 유지보수: 100만원~</li>
-            </ul>
-            
-            <h3>BETA 1기 파트너 혜택</h3>
-            <ul>
-                <li><strong>✓ 컨설팅 무료:</strong> 공간 분석 및 최적 설치 위치 제안 무상 제공</li>
-                <li><strong>✓ 디자인 50% 할인:</strong> 맞춤형 콘텐츠 디자인 초안 특별 가격</li>
-                <li><strong>✓ 3개월 무상 지원:</strong> 유지보수 및 콘텐츠 업데이트 무료</li>
-                <li><strong>✓ 우선 협력권:</strong> 향후 확장 프로젝트 우선 참여 기회</li>
-            </ul>
-            
-            <h3>투자 대비 효과</h3>
-            <p>최소 투자로 <strong>도시 이미지 개선, 시민 만족도 향상, 미디어 홍보 효과</strong>를 동시에 얻을 수 있는 고효율 프로젝트입니다.</p>
-            
-            <p style="text-align: center; margin-top: 2rem; color: #FFD700; font-size: 1.2rem;">
-                <strong>지금 신청하면 세종시 최초 감성 재활용 프로젝트의 주인공이 됩니다!</strong>
-            </p>
-        </div>
-    </div>
-
-    <!-- 네비게이션 -->
-    <nav>
-        <ul>
-            <li><a onclick="openModal('problemModal')">문제</a></li>
-            <li><a onclick="openModal('solutionModal')">솔루션</a></li>
-            <li><a onclick="openModal('benefitsModal')">혜택</a></li>
-            <li><a onclick="openModal('trustModal')">신뢰</a></li>
-            <li><a onclick="openModal('pricingModal')">가격</a></li>
-            <li><a href="#cta">신청</a></li>
-        </ul>
-    </nav>
-
-    <!-- 히어로 섹션 -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hangeul-decoration">ㅎㅁㅈㅇ</div>
-            <h1>퇴근 후 삭막한 도시의 벽면,<br>당신의 <span>十五分 감성 충전소</span>가 되다</h1>
-            <p class="subtitle">도시 공간 감성 재활용 프로젝트: 세종의 유휴 공간을 문화적 활력으로 채웁니다</p>
-            
-            <div class="visual-grid">
-                <div class="visual-card" onclick="openModal('problemModal')">
-                    <div class="visual-card-content">
-                        <div class="visual-icon">🏢</div>
-                        <strong>삭막한 콘크리트 벽면</strong><br>
-                        <small>변화 이전의 유휴 공간</small>
-                    </div>
-                </div>
-                <div class="visual-card" onclick="openModal('solutionModal')">
-                    <div class="visual-card-content">
-                        <div class="visual-icon">✨</div>
-                        <strong>디지털 미디어 아트</strong><br>
-                        <small>감성을 담은 빛의 설치</small>
-                    </div>
-                </div>
-                <div class="visual-card" onclick="openModal('benefitsModal')">
-                    <div class="visual-card-content">
-                        <div class="visual-icon">💫</div>
-                        <strong>생명을 얻은 공간</strong><br>
-                        <small>문화적 활력이 깃든 도시</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA 섹션 -->
-    <section id="cta" class="cta">
-        <h2>삭막한 도시를 감성으로 채울 용기,<br>지금 문의하세요</h2>
-        <p>
-            단 한 곳의 유휴 공간을 바꾸는 것만으로도, 세종시민 전체의 일상에 '문화적 활력'을 불어넣을 수 있습니다. 
-            저희는 세종시의 공간 혁신 전문가로서 장기적인 파트너가 될 준비가 되어있습니다.
-        </p>
-        <button class="cta-button" onclick="alert('문의가 접수되었습니다! 담당자가 곧 연락드리겠습니다.')">
-            도시 혁신 프로젝트 문의/협력 신청
-        </button>
-    </section>
-
-    <script>
-        // 모달 열기 함수
-        function openModal(modalId) {
-            console.log('Opening modal:', modalId); // 디버깅용
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            } else {
-                console.error('Modal not found:', modalId);
-            }
-        }
-
-        // 모달 닫기 함수
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // 모달 외부 클릭 시 닫기
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // ESC 키로 모달 닫기
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // 페이지 로드 시 최상단으로
-        window.addEventListener('DOMContentLoaded', () => {
-            window.scrollTo(0, 0);
-            console.log('Page loaded'); // 디버깅용
-        });
-    </script>
-</body>
 </html>
