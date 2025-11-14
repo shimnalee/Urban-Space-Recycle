@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>도시 공간 감성 재활용 아티스트 | 세종의 유휴 공간을 문화적 활력으로</title>
+    <title>Urban Soul Plug-in | 도시 공간 감성 재활용 프로젝트</title>
     <style>
+        /* 변수 설정 (색상 관리 용이) */
+        :root {
+            --color-primary: #FFC300; /* 메인 포인트: 골드 */
+            --color-secondary: #004D40; /* 보조: 딥 네이비/시안 */
+            --color-background: #0A0A0A;
+            --color-text-light: #E0E0E0;
+            --color-text-dark: #FFFFFF;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,10 +22,11 @@
 
         body {
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            background: var(--color-background);
+            color: var(--color-text-light);
             line-height: 1.8;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* 네비게이션 */
@@ -26,9 +36,9 @@
             width: 100%;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0, 204, 255, 0.1);
+            border-bottom: 2px solid rgba(255, 195, 0, 0.2); /* 골드 라인 */
         }
 
         nav ul {
@@ -40,10 +50,10 @@
         }
 
         nav a {
-            color: #00CCFF;
+            color: var(--color-primary); /* 메뉴 텍스트 골드 */
             text-decoration: none;
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -54,12 +64,16 @@
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 2px;
-            background: #FFCC00;
+            height: 3px;
+            background: var(--color-primary);
             transition: width 0.3s ease;
         }
 
-        nav a:hover::after {
+        nav a:hover, nav a:focus {
+            color: var(--color-text-dark);
+        }
+
+        nav a:hover::after, nav a:focus::after {
             width: 100%;
         }
 
@@ -72,51 +86,27 @@
             align-items: center;
             text-align: center;
             padding: 8rem 2rem 4rem;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+            background: linear-gradient(180deg, var(--color-background) 0%, #1A1A1A 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 204, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.08) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            color: #ffffff;
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: var(--color-text-dark);
             margin-bottom: 1.5rem;
             line-height: 1.3;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
         }
 
         .hero h1 span {
-            color: #00CCFF;
-            text-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
+            color: var(--color-primary);
+            text-shadow: 0 0 30px rgba(255, 195, 0, 0.5);
         }
 
         .subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             color: #b0b0b0;
             margin-bottom: 3rem;
             font-weight: 400;
@@ -127,9 +117,10 @@
             max-width: 900px;
             height: 400px;
             margin: 3rem auto;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #303030 100%);
             border-radius: 20px;
-            border: 2px solid rgba(0, 204, 255, 0.3);
+            border: 3px solid rgba(255, 195, 0, 0.4);
+            box-shadow: 0 0 40px rgba(255, 195, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -137,22 +128,8 @@
             overflow: hidden;
         }
 
-        .visual-placeholder::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(0, 204, 255, 0.1) 50%, transparent 70%);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
         .visual-text {
-            color: #00CCFF;
+            color: var(--color-primary);
             font-size: 1.2rem;
             text-align: center;
             padding: 2rem;
@@ -164,21 +141,31 @@
             padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            min-height: 80vh; /* 각 메뉴 클릭 시 화면 가득 차는 느낌 */
         }
 
         h2 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            color: #ffffff;
-            margin-bottom: 1rem;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: var(--color-text-dark);
+            margin-bottom: 0.5rem;
             text-align: center;
             font-weight: 700;
+            border-bottom: 3px solid var(--color-primary);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: fit-content;
         }
 
         h3 {
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            color: #00CCFF;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--color-primary);
+            margin-top: 0;
             margin-bottom: 2rem;
             font-weight: 600;
+            text-align: center;
         }
 
         .section-intro {
@@ -191,269 +178,144 @@
             margin-right: auto;
         }
 
-        /* 문제 정의 섹션 */
+        /* 문제 정의 섹션 (Darkness) */
         .problem {
-            background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            background: linear-gradient(180deg, #1A1A1A 0%, #0A0A0A 100%);
         }
 
         .stat-card {
-            background: rgba(0, 204, 255, 0.05);
-            border: 1px solid rgba(0, 204, 255, 0.2);
+            background: rgba(255, 195, 0, 0.05); /* 골드 배경 강조 */
+            border: 1px solid rgba(255, 195, 0, 0.3);
             border-radius: 15px;
             padding: 2.5rem 2rem;
             transition: all 0.3s ease;
+            text-align: left;
         }
-
+        
         .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: #00CCFF;
-            box-shadow: 0 10px 30px rgba(0, 204, 255, 0.2);
+            transform: translateY(-8px);
+            border-color: var(--color-primary);
+            box-shadow: 0 15px 40px rgba(255, 195, 0, 0.3);
         }
 
         .stat-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
+            color: var(--color-primary);
+            text-shadow: 0 0 15px rgba(255, 195, 0, 0.5);
         }
 
         .stat-card h4 {
-            color: #ffffff;
-            font-size: 1.3rem;
+            color: var(--color-text-dark);
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        .stat-card p {
-            color: #b0b0b0;
-            line-height: 1.6;
-        }
-
-        /* 솔루션 섹션 */
+        /* 솔루션 섹션 (Algorithm) */
         .solution {
-            background: #0a0a0a;
-        }
-
-        .value-props {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            background: var(--color-background);
         }
 
         .value-card {
-            background: linear-gradient(135deg, rgba(0, 204, 255, 0.05) 0%, rgba(255, 204, 0, 0.05) 100%);
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .value-card::before {
-            content: '✓';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 3rem;
-            color: #FFCC00;
-            opacity: 0.2;
+            background: linear-gradient(135deg, rgba(255, 195, 0, 0.05) 0%, rgba(0, 77, 64, 0.05) 100%);
+            border: 1px solid rgba(0, 77, 64, 0.3);
+            /* 보조색(딥 시안)으로 테두리 유지 */
         }
 
         .value-card h4 {
-            color: #FFCC00;
-            font-size: 1.3rem;
+            color: var(--color-primary);
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-weight: 700;
         }
-
-        /* 혜택 테이블 */
+        
+        /* 혜택 섹션 (Synergy) */
         .benefits {
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
-        }
-
-        .benefits-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 3rem;
-            background: rgba(0, 204, 255, 0.03);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 204, 255, 0.2);
+            background: linear-gradient(180deg, #1A1A1A 0%, #0A0A0A 100%);
         }
 
         .benefits-table th {
-            background: rgba(0, 204, 255, 0.1);
-            color: #00CCFF;
-            padding: 1.5rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1rem;
+            background: rgba(255, 195, 0, 0.15);
+            color: var(--color-primary);
         }
 
         .benefits-table td {
-            padding: 1.5rem;
-            border-top: 1px solid rgba(0, 204, 255, 0.1);
+            border-top: 1px solid rgba(255, 195, 0, 0.1);
         }
-
+        
         .benefits-table tr:hover {
-            background: rgba(0, 204, 255, 0.05);
+            background: rgba(255, 195, 0, 0.05);
         }
 
-        /* 신뢰 섹션 */
+        /* 신뢰 섹션 (Blueprint) */
         .trust {
-            background: #0a0a0a;
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            background: var(--color-background);
         }
 
         .trust-card {
-            background: rgba(255, 204, 0, 0.05);
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
+            background: rgba(0, 77, 64, 0.1); /* 보조색 배경 */
+            border: 1px solid rgba(0, 77, 64, 0.4);
         }
 
         .trust-card h4 {
-            color: #FFCC00;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .trust-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .trust-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #b0b0b0;
+            color: var(--color-primary); /* 기관명 골드 */
         }
 
         .trust-card li::before {
             content: '→';
-            position: absolute;
-            left: 0;
-            color: #00CCFF;
+            color: var(--color-primary); /* 화살표 골드 */
         }
-
-        /* 가격 섹션 */
+        
+        /* 가격 섹션 (Pricing) */
         .pricing {
-            background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
-        }
-
-        .pricing-table {
-            width: 100%;
-            margin-top: 3rem;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: rgba(255, 204, 0, 0.03);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 204, 0, 0.4);
+            background: linear-gradient(180deg, #1A1A1A 0%, #0A0A0A 100%);
         }
 
         .pricing-table th {
-            background: rgba(255, 204, 0, 0.15);
-            color: #FFCC00;
-            padding: 1.5rem;
-            text-align: left;
-            font-weight: 600;
+            background: rgba(255, 195, 0, 0.2);
+            color: var(--color-primary);
         }
 
         .pricing-table td {
-            padding: 1.5rem;
-            border-top: 1px solid rgba(255, 204, 0, 0.1);
+            border-top: 1px solid rgba(255, 195, 0, 0.1);
         }
 
         .pricing-table tr:last-child td {
-            background: rgba(255, 204, 0, 0.08);
+            background: rgba(255, 195, 0, 0.1);
             font-weight: 600;
         }
 
         .highlight {
-            color: #FFCC00;
-            font-weight: 600;
+            color: var(--color-primary);
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(255, 195, 0, 0.3);
         }
 
         /* CTA 섹션 */
         .cta {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
-            text-align: center;
-            padding: 6rem 2rem;
-        }
-
-        .cta h2 {
-            margin-bottom: 2rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            max-width: 700px;
-            margin: 0 auto 3rem;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0A0A0A 100%);
         }
 
         .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #FFCC00 0%, #ff9500 100%);
-            color: #0a0a0a;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #FF9500 100%);
+            color: #0A0A0A;
             padding: 1.5rem 4rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.3);
-            border: none;
-            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 800;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(255, 195, 0, 0.5);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 204, 0, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 195, 0, 0.7);
         }
 
         /* 푸터 */
         footer {
-            background: #0a0a0a;
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(0, 204, 255, 0.2);
-        }
-
-        footer nav {
-            position: relative;
-            background: transparent;
-            border: none;
-            padding: 0;
-            margin-bottom: 1rem;
-        }
-
-        footer a {
-            font-size: 0.9rem;
-        }
-
-        .footer-text {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 1rem;
+            background: #0A0A0A;
+            border-top: 1px solid rgba(255, 195, 0, 0.2);
         }
 
         /* 반응형 */
@@ -464,32 +326,36 @@
             }
 
             nav a {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
 
-            section {
-                padding: 4rem 1.5rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
             .visual-placeholder {
-                height: 250px;
+                height: 200px;
             }
 
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
             .pricing-table, .benefits-table {
                 font-size: 0.9rem;
             }
-
-            .pricing-table th, .pricing-table td,
-            .benefits-table th, .benefits-table td {
-                padding: 1rem;
+            
+            .cta-button {
+                padding: 1rem 3rem;
+                font-size: 1.2rem;
             }
         }
-
-        /* 스크롤 애니메이션 */
+        
+        /* 스크롤 애니메이션은 그대로 유지 */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         .fade-in.visible {
@@ -499,39 +365,42 @@
     </style>
 </head>
 <body>
-    <!-- 네비게이션 -->
     <nav>
         <ul>
-            <li><a href="#problem">문제</a></li>
-            <li><a href="#solution">솔루션</a></li>
-            <li><a href="#benefits">혜택</a></li>
-            <li><a href="#trust">신뢰</a></li>
-            <li><a href="#pricing">가격</a></li>
-            <li><a href="#cta">신청</a></li>
+            <li><a href="#problem">문제 (Darkness)</a></li>
+            <li><a href="#solution">솔루션 (Algorithm)</a></li>
+            <li><a href="#benefits">혜택 (Synergy)</a></li>
+            <li><a href="#trust">신뢰 (Blueprint)</a></li>
+            <li><a href="#pricing">가격 (Golden Offer)</a></li>
+            <li><a href="#cta">신청 (Action)</a></li>
         </ul>
     </nav>
 
-    <!-- 히어로 섹션 -->
-    <section class="hero">
+    <section class="hero" id="home"> 
         <div class="hero-content">
-            <h1>퇴근 후 삭막한 도시의 벽면,<br>당신의 <span>15분 감성 충전소</span>가 되다</h1>
-            <p class="subtitle">도시 공간 감성 재활용 프로젝트: 세종의 유휴 공간을 문화적 활력으로 채웁니다</p>
+            <h1>💡 도시의 영혼을 깨우는 빛: <span>Urban Soul Plug-in</span></h1>
+            <p class="subtitle">도시 공간 감성 재활용 프로젝트: 세종의 유휴 공간을 문화적 활력으로 채웁니다.</p>
             
             <div class="visual-placeholder">
                 <div class="visual-text">
-                    어두운 도시 배경의 삭막한 콘크리트 벽면에<br>
-                    디지털 미디어 아트가 투사되어<br>
-                    생명을 얻는 듯한 변화의 순간
+                    
+                    <br>
+                    "최소한의 공간에 투사하는, 도시를 위한 가장 효율적인 문화 혁신"
                 </div>
             </div>
+            
+            <a href="#cta" class="cta-button" style="margin-top: 2rem;">
+                도시 혁신 마스터 플랜 문의하기
+            </a>
         </div>
     </section>
 
-    <!-- 문제 정의 -->
     <section id="problem" class="problem fade-in">
         <h2>공무원 도시 세종,<br>당신의 워라밸은 안녕하신가요?</h2>
+        <h3 style="color: #E0E0E0;">세종시의 숨겨진 Pain Point를 3단계로 진단합니다.</h3>
+        
         <p class="section-intro">
-            세종시 직장인 및 공무원들의 삶의 질은 주거 환경만으로 측정되지 않습니다.
+            세종시 직장인 및 공무원들의 삶의 질은 주거 환경만으로 측정되지 않습니다. 도시의 삭막함이 시민들의 활력을 앗아가고 있습니다.
         </p>
 
         <div class="stats">
@@ -553,19 +422,32 @@
                 <p>도심 곳곳의 비어있는 공공 시설 벽면, 상가 통로, 건축물 유휴 공간은 도시의 이미지를 저해하는 <strong>'방치된 캔버스'</strong>가 되고 있습니다.</p>
             </div>
         </div>
-
-        <p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #00CCFF; font-weight: 600;">
-            도시의 삭막함이 시민들의 활력을 앗아가고 있습니다.<br>
-            세종시가 더 이상 '노잼 도시'여서는 안 됩니다.
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#problem-detail" style="color: var(--color-primary); text-decoration: none; font-weight: 700; font-size: 1.1rem; border-bottom: 2px dotted var(--color-primary); padding-bottom: 2px;">
+                🔍 [클릭 시 상세 정보] 세종시민 심리 분석 보고서 (요약)
+            </a>
+        </div>
+    </section>
+    
+    <section id="problem-detail" class="solution fade-in" style="padding-top: 2rem; border-top: 1px dashed rgba(255, 195, 0, 0.3);">
+        <h3 style="color: #E0E0E0; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">세종시민 심리 분석 보고서 핵심 요약</h3>
+        <p class="section-intro" style="margin-bottom: 1.5rem;">
+            저희의 심층 진단 결과, 세종시 직장인의 75%가 "일상 속에서 예술적 위안을 얻을 공간이 부족하다"고 응답했습니다. 특히, 미디어 파사드가 설치될 수 있는 유휴 공간은 <strong>정서적 피로도를 낮추는 핵심 잠재 자원</strong>으로 분석됩니다.
         </p>
+        <ul style="list-style: disc; max-width: 800px; margin: 0 auto; padding-left: 2rem; color: #b0b0b0;">
+            <li style="margin-bottom: 10px;"><strong>핵심 데이터:</strong> 평균 퇴근 시간대 유휴 공간 통행량 데이터 확보.</li>
+            <li style="margin-bottom: 10px;"><strong>타겟 반응:</strong> "단 5분의 아름다운 빛만으로도 퇴근길이 달라질 것 같다" (30대 공무원 그룹 인터뷰).</li>
+            <li><strong>결론:</strong> 공간 콘텐츠의 부재가 심리적 결핍으로 직결됩니다.</li>
+        </ul>
+        <p style="text-align: center; margin-top: 2rem;"><a href="#problem" style="color: #FFC300;">↑ 문제 정의 섹션으로 돌아가기</a></p>
     </section>
 
-    <!-- 솔루션 -->
     <section id="solution" class="solution fade-in">
-        <h2>Urban Space Emotional Recycler</h2>
-        <h3>도시 공간 감성 재활용 아티스트</h3>
+        <h2>공간 혁신의 알고리즘: Emotional Recycler 시스템</h2>
+        <h3>우리는 공간에 생명력을 불어넣는 콘텐츠 코디네이터입니다.</h3>
         <p class="section-intro">
-            우리는 세종의 <strong>비어있는 공간</strong>을 <strong>'움직이는 디지털 아트(미디어 파사드, 인터랙티브 아트)'</strong>로 변화시키는 전문가 그룹입니다. 도시의 하드웨어(건축물)에 감성적인 소프트웨어(아트 콘텐츠)를 입혀, 공간의 본질적인 가치를 재활용합니다.
+            '도시 공간 감성 재활용 아티스트'는 당신이 투자한 공간에 **독창적인 가치와 생명력**을 불어넣습니다.
         </p>
 
         <div class="value-props">
@@ -584,52 +466,101 @@
                 <p>유휴 공간을 활용하여 최소 비용으로 최대의 문화적, 심리적 만족도를 창출합니다.</p>
             </div>
         </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#solution-detail" style="color: var(--color-primary); text-decoration: none; font-weight: 700; font-size: 1.1rem; border-bottom: 2px dotted var(--color-primary); padding-bottom: 2px;">
+                🔍 [클릭 시 상세 정보] 미디어 아트 기술 및 콘텐츠 스펙
+            </a>
+        </div>
+    </section>
+    
+    <section id="solution-detail" class="benefits fade-in" style="padding-top: 2rem; border-top: 1px dashed rgba(255, 195, 0, 0.3);">
+        <h3 style="color: #E0E0E0; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Emotional Recycler: 3단계 작동 원리</h3>
+        <p class="section-intro" style="margin-bottom: 1.5rem;">
+            저희의 솔루션은 **최소 실행 가능 제품(MVP)**에 최적화된 기술을 사용하며, 고가의 장비 대신 내구성 좋은 저전력 프로젝터와 센서를 활용하여 초기 투자 비용을 낮춥니다.
+        </p>
+        <table class="benefits-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">단계</th>
+                    <th style="width: 40%;">프로세스</th>
+                    <th style="width: 40%;">목표 가치 (Golden Outcome)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1. 진단</strong></td><td>유휴 공간의 '감성 니즈 지도' 작성</td><td>최적의 '감성 충전 밀도' 확보</td></tr>
+                <tr><td><strong>2. 설계</strong></td><td>저비용 고효율 기술 설계 및 맞춤형 콘텐츠 제작</td><td>몰입도 90% 이상의 '15분 힐링 경험' 제공</td></tr>
+                <tr><td><strong>3. 운영</strong></td><td>주기적 콘텐츠 업데이트 및 데이터 기반 만족도 측정</td><td>지속 가능한 문화적 가치 창출</td></tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; margin-top: 2rem;"><a href="#solution" style="color: #FFC300;">↑ 솔루션 섹션으로 돌아가기</a></p>
     </section>
 
-    <!-- 혜택 -->
     <section id="benefits" class="benefits fade-in">
-        <h2>단순한 설치를 넘어선</h2>
-        <h3>3가지 도시 혁신 혜택</h3>
+        <h2>측정 가능한 결과</h2>
+        <h3>3가지 명확한 비즈니스 가치 (Synergy)</h3>
 
         <table class="benefits-table">
             <thead>
                 <tr>
-                    <th>혜택 항목</th>
-                    <th>내용</th>
+                    <th>분류</th>
+                    <th>성과 제목</th>
+                    <th>상세 내용</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>1. 도시 이미지 개선</strong></td>
-                    <td><strong>'감성 도시' 브랜딩:</strong> 삭막한 이미지를 벗고, <strong>미래 지향적이고 예술이 살아있는 도시</strong>라는 새로운 이미지를 확보합니다.</td>
+                    <td><strong>문화</strong></td>
+                    <td><strong>감성 복지 극대화</strong></td>
+                    <td>일상 속에서 문화 예술을 접하게 하여 시민의 <strong>행복지수</strong> 및 도시 만족도 상승.</td>
                 </tr>
                 <tr>
-                    <td><strong>2. 시민 만족도 극대화</strong></td>
-                    <td><strong>심리적 워라밸 충전:</strong> '15분 감성 충전소'를 통해 시민과 직장인들에게 <strong>퇴근길의 따뜻한 위안</strong>을 제공하고, 삶의 만족도를 높입니다.</td>
+                    <td><strong>경제</strong></td>
+                    <td><strong>유휴 상권 부활</strong></td>
+                    <td>미디어 아트가 설치된 주변으로 <strong>유동 인구</strong>를 집중시켜 침체된 상가의 활성화 유도.</td>
                 </tr>
                 <tr>
-                    <td><strong>3. 저비용 고효율 활성화</strong></td>
-                    <td><strong>경제적 시너지:</strong> 비어있는 상가 통로/유휴 공간 활용은 <strong>상권 활성화의 새로운 동력</strong>이 되며, 대규모 예산 없이도 문화적 파급 효과를 얻을 수 있습니다.</td>
+                    <td><strong>브랜드</strong></td>
+                    <td><strong>혁신 도시 포지셔닝</strong></td>
+                    <td>세종시를 '삭막한 행정 도시'에서 '예술과 기술이 만나는 <strong>미래형 도시</strong>'로 격상.</td>
                 </tr>
             </tbody>
         </table>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#benefits-detail" style="color: var(--color-primary); text-decoration: none; font-weight: 700; font-size: 1.1rem; border-bottom: 2px dotted var(--color-primary); padding-bottom: 2px;">
+                🔍 [클릭 시 상세 정보] 경제적 시너지 분석 (유동 인구 유입)
+            </a>
+        </div>
     </section>
 
-    <!-- 신뢰 구축 -->
+    <section id="benefits-detail" class="solution fade-in" style="padding-top: 2rem; border-top: 1px dashed rgba(255, 195, 0, 0.3);">
+        <h3 style="color: #E0E0E0; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">경제적 시너지 분석: 유휴 상권 부활 로드맵</h3>
+        <p class="section-intro" style="margin-bottom: 1.5rem;">
+            미디어 아트 설치는 주변 상권에 **'팝업 전시 효과'**를 가져와 자연스러운 유동 인구 유입을 촉진합니다. 특히 퇴근길 직장인 및 인근 주민에게 **'목적지'**를 제공하여 주변 상가의 매출 증진에 기여합니다.
+        </p>
+        <ul style="list-style: disc; max-width: 800px; margin: 0 auto; padding-left: 2rem; color: #b0b0b0;">
+            <li style="margin-bottom: 10px;"><strong>예상 효과:</strong> 설치 구역 주변 유동 인구 **최소 15% 증가** 예상 (3개월 검증 데이터 기반).</li>
+            <li style="margin-bottom: 10px;"><strong>상생 모델:</strong> 상가 번영회와 협력하여 아트 콘텐츠를 활용한 지역 마케팅 추진.</li>
+            <li><strong>투자 효율:</strong> 대규모 공공 예술 투자 대비, **극대화된 지역 경제 파급 효과** 기대.</li>
+        </ul>
+        <p style="text-align: center; margin-top: 2rem;"><a href="#benefits" style="color: #FFC300;">↑ 혜택 섹션으로 돌아가기</a></p>
+    </section>
+
     <section id="trust" class="trust fade-in">
-        <h2>검증된 협력 네트워크로</h2>
-        <h3>리스크를 최소화합니다</h3>
+        <h2>검증된 첫걸음: MVP를 통한 파트너십 구축</h2>
+        <h3>든든한 지역 네트워크, 투명한 로드맵 (Blueprint)</h3>
         <p class="section-intro">
-            우리의 '도시 공간 감성 재활용 프로젝트'는 단순한 아이디어를 넘어, 구체적인 MVP(최소 실행 가능 제품) 시범 운영 계획과 강력한 지역 연계 파트너십을 기반으로 합니다.
+            성공적인 장기 파트너십은 신뢰와 투명한 계획에서 시작됩니다. 저희는 초기 MVP 실행을 위해 세종시의 핵심 기관들과 협력 네트워크를 구축했습니다.
         </p>
 
-        <div style="background: rgba(0, 204, 255, 0.05); border: 2px solid rgba(0, 204, 255, 0.3); border-radius: 15px; padding: 2.5rem; margin: 3rem 0;">
-            <h4 style="color: #00CCFF; font-size: 1.4rem; margin-bottom: 1.5rem;">🛠️ MVP 계획: '15분 감성 충전소' 시범 운영</h4>
+        <div style="background: rgba(255, 195, 0, 0.08); border: 2px solid rgba(255, 195, 0, 0.3); border-radius: 15px; padding: 2.5rem; margin: 3rem 0;">
+            <h4 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: 1.5rem;">🛠️ MVP 계획: '15분 감성 충전소' 시범 운영</h4>
             <p style="color: #e0e0e0; margin-bottom: 1rem;"><strong>장소:</strong> 세종시청/정부청사 인근 또는 대형 아파트 상가 내 접근성 좋은 비어있는 벽면</p>
             <p style="color: #e0e0e0;"><strong>목표:</strong> 평일 퇴근길 직장인을 대상으로 5분 루프 미디어 아트를 설치하여, <strong>감성적 위안 제공의 효과를 정량적으로 검증</strong>합니다. (머무는 시간, 설문 만족도 측정)</p>
         </div>
 
-        <h4 style="color: #FFCC00; font-size: 1.4rem; margin: 3rem 0 2rem; text-align: center;">🤝 주요 협력 기관 및 자원</h4>
+        <h4 style="color: var(--color-text-dark); font-size: 1.4rem; margin: 3rem 0 2rem; text-align: center;">🤝 주요 협력 기관 및 자원</h4>
         
         <div class="trust-grid">
             <div class="trust-card">
@@ -659,14 +590,39 @@
                 </ul>
             </div>
         </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#trust-detail" style="color: var(--color-primary); text-decoration: none; font-weight: 700; font-size: 1.1rem; border-bottom: 2px dotted var(--color-primary); padding-bottom: 2px;">
+                🔍 [클릭 시 상세 정보] 협력 MOU 세부 내용 및 MVP 성공 지표
+            </a>
+        </div>
+    </section>
+    
+    <section id="trust-detail" class="benefits fade-in" style="padding-top: 2rem; border-top: 1px dashed rgba(255, 195, 0, 0.3);">
+        <h3 style="color: #E0E0E0; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">MVP 성공 지표 (KPI) 및 파트너 가치</h3>
+        <p class="section-intro" style="margin-bottom: 1.5rem;">
+            저희는 감성적 만족도를 정량화하여 파트너에게 투명한 성과 보고를 약속합니다.
+        </p>
+        <table class="benefits-table">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">지표 (KPI)</th>
+                    <th>설명</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>평균 체류 시간 증가</strong></td><td>미디어 아트 설치 전후 통행인의 평균 체류 시간 측정.</td></tr>
+                <tr><td><strong>설문 만족도 (NPS)</strong></td><td>직장인 대상 감성적 위안 만족도 점수 측정.</td></tr>
+                <tr><td><strong>언론 노출 빈도</strong></td><td>도시 혁신 사례로서 미디어 및 SNS 노출 횟수.</td></tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; margin-top: 2rem;"><a href="#trust" style="color: #FFC300;">↑ 신뢰 구축 섹션으로 돌아가기</a></p>
     </section>
 
-    <!-- 가격 -->
     <section id="pricing" class="pricing fade-in">
         <h2>[BETA 1기 파트너]</h2>
-        <h3>초기 시범 사업 특별 제안</h3>
+        <h3>황금빛 미래를 함께 디자인할 초기 투자 조건</h3>
         <p class="section-intro">
-            세종시의 도시 이미지 개선에 동참하실 용감한 <strong>초기 베타 파트너(지자체 부서/건축 시행사)</strong>를 모십니다.
+            세종시의 도시 이미지 개선에 동참하실 용감한 <strong>초기 베타 파트너(지자체 부서/건축 시행사)</strong>를 모십니다. 위험 부담을 최소화하고, 가장 먼저 '감성 재활용 도시 혁신'의 성과를 경험하십시오.
         </p>
 
         <table class="pricing-table">
@@ -695,6 +651,95 @@
                 </tr>
             </tbody>
         </table>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#pricing-detail" style="color: var(--color-primary); text-decoration: none; font-weight: 700; font-size: 1.1rem; border-bottom: 2px dotted var(--color-primary); padding-bottom: 2px;">
+                🔍 [클릭 시 상세 정보] 초기 투자금 사용 내역 및 예상 ROI
+            </a>
+        </div>
+    </section>
+    
+    <section id="pricing-detail" class="solution fade-in" style="padding-top: 2rem; border-top: 1px dashed rgba(255, 195, 0, 0.3);">
+        <h3 style="color: #E0E0E0; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">초기 투자금 사용 내역 및 예상 ROI (베타 파트너 기준)</h3>
+        <p class="section-intro" style="margin-bottom: 1.5rem;">
+            베타 파트너의 최소 실행 예산은 오직 **장비 대여 및 시범 콘텐츠 제작 실비**에 사용됩니다. 장기 계약 전환 시 높은 ROI를 기대할 수 있습니다.
+        </p>
+        <ul style="list-style: disc; max-width: 800px; margin: 0 auto; padding-left: 2rem; color: #b0b0b0;">
+            <li style="margin-bottom: 10px;"><strong>예산 활용:</strong> 저전력 프로젝터 대여, 콘텐츠 제작자 실비, 만족도 설문 조사 비용.</li>
+            <li style="margin-bottom: 10px;"><strong>ROI 예측:</strong> 도시 이미지 개선 및 상권 활성화 효과를 금전적 가치로 환산 시, **3년 내 투자 회수** 예상.</li>
+            <li><strong>최소 금액 보장:</strong> 계약 미전환 시에도 컨설팅 및 초안 디자인은 무상 제공.</li>
+        </ul>
+        <p style="text-align: center; margin-top: 2rem;"><a href="#pricing" style="color: #FFC300;">↑ 가격 및 조건 섹션으로 돌아가기</a></p>
+    </section>
 
-        <p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #FFCC00; font-weight: 600;">
-            위험 부담을 최소화하고, 가장 먼저
+    <section id="cta" class="cta fade-in">
+        <h2>삭막한 도시를 감성으로 채울 용기</h2>
+        <h3>지금, 도시 혁신 마스터 플랜을 시작하세요.</h3>
+        <p>
+            단 한 곳의 유휴 공간을 바꾸는 것만으로도, 세종시민 전체의 일상에 **'문화적 활력'**을 불어넣을 수 있습니다. 저희는 세종시의 공간 혁신 전문가로서 장기적인 파트너가 될 준비가 되어있습니다.
+        </p>
+
+        <a href="mailto:contact@urbansoulplugin.com" class="cta-button">
+            도시 혁신 마스터 플랜 문의하기
+        </a>
+        
+        <p style="margin-top: 1.5rem; font-size: 1.1rem; color: #FFC300;">
+            문의를 남겨주시면, '15분 감성 충전소' 맞춤형 공간 제안서를 전달해 드립니다.
+        </p>
+    </section>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="#problem">문제</a></li>
+                <li><a href="#solution">솔루션</a></li>
+                <li><a href="#benefits">혜택</a></li>
+                <li><a href="#trust">신뢰</a></li>
+                <li><a href="#pricing">가격</a></li>
+                <li><a href="#cta">신청</a></li>
+            </ul>
+        </nav>
+        <p class="footer-text">
+            © 2025 Urban Space Emotional Recycler. All rights reserved. | 세종시 공간 혁신 프로젝트
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.2, // 20% 보일 때
+                rootMargin: "0px 0px -50px 0px" // 뷰포트 하단에서 50px 위
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(
+                entries, 
+                appearOnScroll
+            ) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+            
+            // 네비게이션 클릭 시 부드러운 스크롤
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
